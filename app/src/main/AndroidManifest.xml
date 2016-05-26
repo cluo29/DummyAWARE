@@ -140,6 +140,22 @@
             android:writePermission="com.aware.WRITE_CONTEXT_DATA"
             >
         </provider>
+        <provider
+            android:name="com.aware.plugin.dummyaware.providers.Light_Provider"
+            android:authorities="${applicationId}.provider.light"
+            android:exported="true"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA"
+            >
+        </provider>
+        <provider
+            android:name="com.aware.plugin.dummyaware.providers.Linear_Accelerometer_Provider"
+            android:authorities="${applicationId}.provider.accelerometer.linear"
+            android:exported="true"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA"
+            >
+        </provider>
     </application>
 
 </manifest>
