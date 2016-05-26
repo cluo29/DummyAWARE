@@ -37,11 +37,13 @@
         tools:replace="android:icon, android:theme">
 
         <service android:name="com.aware.plugin.dummyaware.Plugin" android:exported="true" />
+
         <provider android:name="com.aware.plugin.dummyaware.Provider"
             android:authorities="${applicationId}.provider.dummyaware"
             android:exported="true"
             android:readPermission="com.aware.READ_CONTEXT_DATA"
             android:writePermission="com.aware.WRITE_CONTEXT_DATA"/>
+
         <provider
             android:name="com.aware.plugin.dummyaware.providers.Accelerometer_Provider"
             android:authorities="${applicationId}.provider.accelerometer"
@@ -50,7 +52,54 @@
             android:writePermission="com.aware.WRITE_CONTEXT_DATA"
             >
         </provider>
-
+        <provider
+            android:name="com.aware.plugin.dummyaware.providers.Applications_Provider"
+            android:authorities="${applicationId}.provider.applications"
+            android:exported="true"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA"
+            >
+        </provider>
+        <provider
+            android:name="com.aware.plugin.dummyaware.providers.Aware_Provider"
+            android:authorities="${applicationId}.provider.aware"
+            android:exported="true"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA"
+            >
+        </provider>
+        <provider
+            android:name="com.aware.plugin.dummyaware.providers.Barometer_Provider"
+            android:authorities="${applicationId}.provider.barometer"
+            android:exported="true"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA"
+            >
+        </provider>
+        <provider
+            android:name="com.aware.plugin.dummyaware.providers.Battery_Provider"
+            android:authorities="${applicationId}.provider.battery"
+            android:exported="true"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA"
+            >
+        </provider>
+        <provider
+            android:name="com.aware.plugin.dummyaware.providers.Bluetooth_Provider"
+            android:authorities="${applicationId}.provider.bluetooth"
+            android:exported="true"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA"
+            >
+        </provider>
+        <provider
+            android:name="com.aware.plugin.dummyaware.providers.Communication_Provider"
+            android:authorities="${applicationId}.provider.communication"
+            android:exported="true"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA"
+            >
+        </provider>
     </application>
 
 </manifest>
