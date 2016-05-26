@@ -100,6 +100,46 @@
             android:writePermission="com.aware.WRITE_CONTEXT_DATA"
             >
         </provider>
+        <provider
+            android:name="com.aware.plugin.dummyaware.providers.ESM_Provider"
+            android:authorities="${applicationId}.provider.esm"
+            android:exported="true"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA"
+            >
+        </provider>
+        <provider
+            android:name="com.aware.plugin.dummyaware.providers.Gravity_Provider"
+            android:authorities="${applicationId}.provider.gravity"
+            android:exported="true"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA"
+            >
+        </provider>
+        <provider
+            android:name="com.aware.plugin.dummyaware.providers.Gyroscope_Provider"
+            android:authorities="${applicationId}.provider.gyroscope"
+            android:exported="true"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA"
+            >
+        </provider>
+        <provider
+            android:name="com.aware.plugin.dummyaware.providers.Installations_Provider"
+            android:authorities="${applicationId}.provider.installations"
+            android:exported="true"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA"
+            >
+        </provider>
+        <provider
+            android:name="com.aware.plugin.dummyaware.providers.Keyboard_Provider"
+            android:authorities="${applicationId}.provider.keyboard"
+            android:exported="true"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA"
+            >
+        </provider>
     </application>
 
 </manifest>
