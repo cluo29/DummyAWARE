@@ -7,7 +7,7 @@ import android.net.Uri;
 import com.aware.Aware;
 import com.aware.Aware_Preferences;
 import com.aware.utils.Aware_Plugin;
-import com.aware.plugin.dummyaware.Provider.Dummy_AWARE_Data_Applications_Crashes;
+//import com.aware.plugin.dummyaware.Provider.Dummy_AWARE_Data_Applications_Crashes;
 
 public class Plugin extends Aware_Plugin {
 
@@ -29,6 +29,7 @@ public class Plugin extends Aware_Plugin {
         //NOTE: if using plugin with dashboard, you can specify the sensors you'll use there.
 
         //Any active plugin/sensor shares its overall context using broadcasts
+        /*
         sContext = new ContextProducer() {
             @Override
             public void onContext() {
@@ -45,24 +46,25 @@ public class Plugin extends Aware_Plugin {
             }
         };
         CONTEXT_PRODUCER = sContext;
-
+*/
         //Add permissions you need (Support for Android M) e.g.,
         //REQUIRED_PERMISSIONS.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         //To sync data to the server, you'll need to set this variables from your ContentProvider
-        DATABASE_TABLES = Provider.DATABASE_TABLES;
-        TABLES_FIELDS = Provider.TABLES_FIELDS;
 
-        CONTEXT_URIS = new Uri[]{ Dummy_AWARE_Data_Applications_Crashes.CONTENT_URI };
 
+        //DATABASE_TABLES = Provider.DATABASE_TABLES;
+        //TABLES_FIELDS = Provider.TABLES_FIELDS;
+
+        //CONTEXT_URIS = new Uri[]{ Dummy_AWARE_Data_Applications_Crashes.CONTENT_URI };
+
+        //need to put all the providers into one provider
         Aware.startPlugin(this, "com.aware.plugin.dummyaware");
 
 
-
-
-
     }
-    
+
+    /*
     public void createApplicationsCrashes(long timestamp, String device_id, String package_name, 
                                     String application_name, long application_version, 
                                     String error_short, String error_long,
@@ -83,7 +85,7 @@ public class Plugin extends Aware_Plugin {
         sendBroadcast(applications_crashes);
         getContentResolver().insert(Dummy_AWARE_Data_Applications_Crashes.CONTENT_URI, data);}
     
-
+*/
 
 
     //This function gets called every 5 minutes by AWARE to make sure this plugin is still running.
