@@ -37,6 +37,7 @@ public class Provider extends ContentProvider {
 
     // ContentProvider query paths
     //accelerometer, app
+    //
     private static final int ACCEL_DEV = 1;
     private static final int ACCEL_DEV_ID = 2;
     private static final int ACCEL_DATA = 3;
@@ -49,6 +50,22 @@ public class Provider extends ContentProvider {
     private static final int NOTIFICATIONS_ID = 10;
     private static final int ERROR = 11;
     private static final int ERROR_ID = 12;
+    private static final int DEVICE_INFO = 13;
+    private static final int DEVICE_INFO_ID = 14;
+    private static final int SETTING = 15;
+    private static final int SETTING_ID = 16;
+    private static final int PLUGIN = 17;
+    private static final int PLUGIN_ID = 18;
+    private static final int SENSOR_DEV = 19;
+    private static final int SENSOR_DEV_ID = 20;
+    private static final int SENSOR_DATA = 21;
+    private static final int SENSOR_DATA_ID = 22;
+    private static final int BATTERY = 23;
+    private static final int BATTERY_ID = 24;
+    private static final int BATTERY_DISCHARGE = 25;
+    private static final int BATTERY_DISCHARGE_ID = 26;
+    private static final int BATTERY_CHARGE = 27;
+    private static final int BATTERY_CHARGE_ID = 28;
 
     public static final String DATABASE_NAME = "dummyaware.db";
 
@@ -172,9 +189,170 @@ public class Provider extends ContentProvider {
         public static final String IS_SYSTEM_APP = "is_system_app";
     }
 
+    public static final class Aware_Device implements BaseColumns {
+        private Aware_Device() {
+        };
+
+        public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/aware_device");
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.aware.plugin.dummyaware.device";
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.aware.plugin.dummyaware.device";
+
+        public static final String _ID = "_id";
+        public static final String TIMESTAMP = "timestamp";
+        public static final String DEVICE_ID = "device_id";
+        public static final String BOARD = "board";
+        public static final String BRAND = "brand";
+        public static final String DEVICE = "device";
+        public static final String BUILD_ID = "build_id";
+        public static final String HARDWARE = "hardware";
+        public static final String MANUFACTURER = "manufacturer";
+        public static final String MODEL = "model";
+        public static final String PRODUCT = "product";
+        public static final String SERIAL = "serial";
+        public static final String RELEASE = "release";
+        public static final String RELEASE_TYPE = "release_type";
+        public static final String SDK = "sdk";
+        public static final String LABEL = "label";
+    }
+
+    public static final class Aware_Settings implements BaseColumns {
+        private Aware_Settings() {
+        };
+
+        public static final Uri CONTENT_URI = Uri.parse("content://"
+                + AUTHORITY + "/aware_settings");
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.aware.plugin.dummyaware.settings";
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.aware.plugin.dummyaware.settings";
+
+        public static final String SETTING_ID = "_id";
+        public static final String SETTING_KEY = "key";
+        public static final String SETTING_VALUE = "value";
+        public static final String SETTING_PACKAGE_NAME = "package_name";
+    }
+
+    public static final class Aware_Plugins implements BaseColumns {
+        private Aware_Plugins() {};
+
+        public static final Uri CONTENT_URI = Uri.parse("content://"
+                + AUTHORITY + "/aware_plugins");
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.aware.plugin.dummyaware.plugins";
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.aware.plugin.dummyaware.plugins";
+
+        public static final String PLUGIN_ID = "_id";
+        public static final String PLUGIN_PACKAGE_NAME = "package_name";
+        public static final String PLUGIN_NAME = "plugin_name";
+        public static final String PLUGIN_VERSION = "plugin_version";
+        public static final String PLUGIN_STATUS = "plugin_status";
+        public static final String PLUGIN_AUTHOR = "plugin_author";
+        public static final String PLUGIN_ICON = "plugin_icon";
+        public static final String PLUGIN_DESCRIPTION = "plugin_description";
+    }
+
+    public static final class Barometer_Sensor implements BaseColumns {
+        private Barometer_Sensor() {
+        };
+
+        public static final Uri CONTENT_URI = Uri.parse("content://"
+                + AUTHORITY + "/sensor_barometer");
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.aware.plugin.dummyaware.barometer.sensor";
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.aware.plugin.dummyaware.barometer.sensor";
+
+        public static final String _ID = "_id";
+        public static final String TIMESTAMP = "timestamp";
+        public static final String DEVICE_ID = "device_id";
+        public static final String MAXIMUM_RANGE = "double_sensor_maximum_range";
+        public static final String MINIMUM_DELAY = "double_sensor_minimum_delay";
+        public static final String NAME = "sensor_name";
+        public static final String POWER_MA = "double_sensor_power_ma";
+        public static final String RESOLUTION = "double_sensor_resolution";
+        public static final String TYPE = "sensor_type";
+        public static final String VENDOR = "sensor_vendor";
+        public static final String VERSION = "sensor_version";
+    }
+
+    public static final class Barometer_Data implements BaseColumns {
+        private Barometer_Data() {
+        };
+
+        public static final Uri CONTENT_URI = Uri.parse("content://"
+                + AUTHORITY + "/barometer");
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.aware.plugin.dummyaware.barometer.data";
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.aware.plugin.dummyaware.barometer.data";
+
+        public static final String _ID = "_id";
+        public static final String TIMESTAMP = "timestamp";
+        public static final String DEVICE_ID = "device_id";
+        public static final String AMBIENT_PRESSURE = "double_values_0";
+        public static final String ACCURACY = "accuracy";
+        public static final String LABEL = "label";
+    }
+
+    public static final class Battery_Data implements BaseColumns {
+        private Battery_Data() {
+        };
+
+        public static final Uri CONTENT_URI = Uri.parse("content://"
+                + AUTHORITY + "/battery");
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.aware.plugin.dummyaware.battery";
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.aware.plugin.dummyaware.battery";
+
+        public static final String _ID = "_id";
+        public static final String TIMESTAMP = "timestamp";
+        public static final String DEVICE_ID = "device_id";
+        public static final String STATUS = "battery_status";
+        public static final String LEVEL = "battery_level";
+        public static final String SCALE = "battery_scale";
+        public static final String VOLTAGE = "battery_voltage";
+        public static final String TEMPERATURE = "battery_temperature";
+        public static final String PLUG_ADAPTOR = "battery_adaptor";
+        public static final String HEALTH = "battery_health";
+        public static final String TECHNOLOGY = "battery_technology";
+    }
+
+    public static final class Battery_Discharges implements BaseColumns {
+        private Battery_Discharges() {
+        };
+
+        public static final Uri CONTENT_URI = Uri.parse("content://"
+                + AUTHORITY + "/battery_discharges");
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.aware.plugin.dummyaware.battery.discharges";
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.aware.plugin.dummyaware.battery.discharges";
+
+        public static final String _ID = "_id";
+        public static final String TIMESTAMP = "timestamp";
+        public static final String DEVICE_ID = "device_id";
+        public static final String BATTERY_START = "battery_start";
+        public static final String BATTERY_END = "battery_end";
+        public static final String END_TIMESTAMP = "double_end_timestamp";
+    }
+
+    public static final class Battery_Charges implements BaseColumns {
+        private Battery_Charges() {
+        };
+
+        public static final Uri CONTENT_URI = Uri.parse("content://"
+                + AUTHORITY + "/battery_charges");
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.aware.plugin.dummyaware.battery.charges";
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.aware.plugin.dummyaware.battery.charges";
+
+        public static final String _ID = "_id";
+        public static final String TIMESTAMP = "timestamp";
+        public static final String DEVICE_ID = "device_id";
+        public static final String BATTERY_START = "battery_start";
+        public static final String BATTERY_END = "battery_end";
+        public static final String END_TIMESTAMP = "double_end_timestamp";
+    }
+
+
+
     //tables, edit
-    public static final String[] DATABASE_TABLES = { "sensor_accelerometer", "accelerometer", "applications_foreground",
-            "applications_history", "applications_notifications", "applications_crashes" };
+    public static final String[] DATABASE_TABLES = { "sensor_accelerometer", "accelerometer",
+            "applications_foreground", "applications_history", "applications_notifications", "applications_crashes",
+            "aware_device", "aware_settings", "aware_plugins",
+            "sensor_barometer", "barometer",
+            "battery", "battery_discharges", "battery_charges"
+
+    };
 
 
     public static final String[] TABLES_FIELDS = {
@@ -267,9 +445,97 @@ public class Provider extends ContentProvider {
                     + Applications_Crashes.IS_SYSTEM_APP
                     + " integer default 0," + "UNIQUE("
                     + Applications_Crashes.TIMESTAMP + ","
-                    + Applications_Crashes.DEVICE_ID + ")"
+                    + Applications_Crashes.DEVICE_ID + ")",
 
+            // Device information
+            Aware_Device._ID + " integer primary key autoincrement,"
+                    + Aware_Device.TIMESTAMP + " real default 0,"
+                    + Aware_Device.DEVICE_ID + " text default '',"
+                    + Aware_Device.BOARD + " text default '',"
+                    + Aware_Device.BRAND + " text default '',"
+                    + Aware_Device.DEVICE + " text default '',"
+                    + Aware_Device.BUILD_ID + " text default '',"
+                    + Aware_Device.HARDWARE + " text default '',"
+                    + Aware_Device.MANUFACTURER + " text default '',"
+                    + Aware_Device.MODEL + " text default '',"
+                    + Aware_Device.PRODUCT + " text default '',"
+                    + Aware_Device.SERIAL + " text default '',"
+                    + Aware_Device.RELEASE + " text default '',"
+                    + Aware_Device.RELEASE_TYPE + " text default '',"
+                    + Aware_Device.SDK + " integer default 0,"
+                    + Aware_Device.LABEL + " text default '',"
+                    + "UNIQUE (" + Aware_Device.TIMESTAMP + "," + Aware_Device.DEVICE_ID + ")",
 
+            // Settings
+            Aware_Settings.SETTING_ID + " integer primary key autoincrement,"
+                    + Aware_Settings.SETTING_KEY + " text default '',"
+                    + Aware_Settings.SETTING_VALUE + " text default '',"
+                    + Aware_Settings.SETTING_PACKAGE_NAME + " text default ''",
+
+            // Plugins
+            Aware_Plugins.PLUGIN_ID + " integer primary key autoincrement,"
+                    + Aware_Plugins.PLUGIN_PACKAGE_NAME + " text default '',"
+                    + Aware_Plugins.PLUGIN_NAME + " text default '',"
+                    + Aware_Plugins.PLUGIN_VERSION + " integer default 0,"
+                    + Aware_Plugins.PLUGIN_STATUS + " integer default 0,"
+                    + Aware_Plugins.PLUGIN_AUTHOR + " text default '',"
+                    + Aware_Plugins.PLUGIN_ICON + " blob default null,"
+                    + Aware_Plugins.PLUGIN_DESCRIPTION + " text default ''",
+
+            Barometer_Sensor._ID + " integer primary key autoincrement,"
+                    + Barometer_Sensor.TIMESTAMP + " real default 0,"
+                    + Barometer_Sensor.DEVICE_ID + " text default '',"
+                    + Barometer_Sensor.MAXIMUM_RANGE + " real default 0,"
+                    + Barometer_Sensor.MINIMUM_DELAY + " real default 0,"
+                    + Barometer_Sensor.NAME + " text default '',"
+                    + Barometer_Sensor.POWER_MA + " real default 0,"
+                    + Barometer_Sensor.RESOLUTION + " real default 0,"
+                    + Barometer_Sensor.TYPE + " text default '',"
+                    + Barometer_Sensor.VENDOR + " text default '',"
+                    + Barometer_Sensor.VERSION + " text default '',"
+                    + "UNIQUE(" + Barometer_Sensor.TIMESTAMP + ","
+                    + Barometer_Sensor.DEVICE_ID + ")",
+            // sensor data
+            Barometer_Data._ID + " integer primary key autoincrement,"
+                    + Barometer_Data.TIMESTAMP + " real default 0,"
+                    + Barometer_Data.DEVICE_ID + " text default '',"
+                    + Barometer_Data.AMBIENT_PRESSURE + " real default 0,"
+                    + Barometer_Data.ACCURACY + " integer default 0,"
+                    + Barometer_Data.LABEL + " text default ''," + "UNIQUE("
+                    + Barometer_Data.TIMESTAMP + "," + Barometer_Data.DEVICE_ID
+                    + ")",
+
+            Battery_Data._ID + " integer primary key autoincrement,"
+                    + Battery_Data.TIMESTAMP + " real default 0,"
+                    + Battery_Data.DEVICE_ID + " text default '',"
+                    + Battery_Data.STATUS + " integer default 0,"
+                    + Battery_Data.LEVEL + " integer default 0,"
+                    + Battery_Data.SCALE + " integer default 0,"
+                    + Battery_Data.VOLTAGE + " integer default 0,"
+                    + Battery_Data.TEMPERATURE + " integer default 0,"
+                    + Battery_Data.PLUG_ADAPTOR + " integer default 0,"
+                    + Battery_Data.HEALTH + " integer default 0,"
+                    + Battery_Data.TECHNOLOGY + " text default '',"
+                    + "UNIQUE (" + Battery_Data.TIMESTAMP + ","
+                    + Battery_Data.DEVICE_ID + ")",
+            // battery discharges
+            Battery_Discharges._ID + " integer primary key autoincrement,"
+                    + Battery_Discharges.TIMESTAMP + " real default 0,"
+                    + Battery_Discharges.DEVICE_ID + " text default '',"
+                    + Battery_Discharges.BATTERY_START + " integer default 0,"
+                    + Battery_Discharges.BATTERY_END + " integer default 0,"
+                    + Battery_Discharges.END_TIMESTAMP + " real default 0,"
+                    + "UNIQUE (" + Battery_Discharges.TIMESTAMP + ","
+                    + Battery_Discharges.DEVICE_ID + ")",
+            // battery charges
+            Battery_Charges._ID + " integer primary key autoincrement,"
+                    + Battery_Charges.TIMESTAMP + " real default 0,"
+                    + Battery_Charges.DEVICE_ID + " text default '',"
+                    + Battery_Charges.BATTERY_START + " integer default 0,"
+                    + Battery_Charges.BATTERY_END + " integer default 0,"
+                    + Battery_Charges.END_TIMESTAMP + " real default 0,"
+                    + "UNIQUE (" + Battery_Charges.TIMESTAMP + ","
+                    + Battery_Charges.DEVICE_ID + ")"
     };
 
     private static UriMatcher sUriMatcher = null;
@@ -279,6 +545,14 @@ public class Provider extends ContentProvider {
     private static HashMap<String, String> applicationsMap = null;
     private static HashMap<String, String> notificationMap = null;
     private static HashMap<String, String> crashesMap = null;
+    private static HashMap<String, String> deviceMap = null;
+    private static HashMap<String, String> settingsMap = null;
+    private static HashMap<String, String> pluginsMap = null;
+    private static HashMap<String, String> sensorMap = null;
+    private static HashMap<String, String> sensorDataMap = null;
+    private static HashMap<String, String> batteryProjectionMap = null;
+    private static HashMap<String, String> batteryDischargesMap = null;
+    private static HashMap<String, String> batteryChargesMap = null;
     private static DatabaseHelper databaseHelper = null;
     private static SQLiteDatabase database = null;
 
@@ -333,32 +607,90 @@ public class Provider extends ContentProvider {
                 break;
             case FOREGROUND:
                 database.beginTransaction();
-                count = database.delete(DATABASE_TABLES[0], selection,
+                count = database.delete(DATABASE_TABLES[2], selection,
                         selectionArgs);
                 database.setTransactionSuccessful();
                 database.endTransaction();
                 break;
             case APPLICATIONS:
                 database.beginTransaction();
-                count = database.delete(DATABASE_TABLES[1], selection,
+                count = database.delete(DATABASE_TABLES[3], selection,
                         selectionArgs);
                 database.setTransactionSuccessful();
                 database.endTransaction();
                 break;
             case NOTIFICATIONS:
                 database.beginTransaction();
-                count = database.delete(DATABASE_TABLES[2], selection,
+                count = database.delete(DATABASE_TABLES[4], selection,
                         selectionArgs);
                 database.setTransactionSuccessful();
                 database.endTransaction();
                 break;
             case ERROR:
                 database.beginTransaction();
-                count = database.delete(DATABASE_TABLES[3], selection,
+                count = database.delete(DATABASE_TABLES[5], selection,
                         selectionArgs);
                 database.setTransactionSuccessful();
                 database.endTransaction();
                 break;
+            case DEVICE_INFO:
+                database.beginTransaction();
+                count = database.delete(DATABASE_TABLES[6], selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case SETTING:
+                database.beginTransaction();
+                count = database.delete(DATABASE_TABLES[7], selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case PLUGIN:
+                database.beginTransaction();
+                count = database.delete(DATABASE_TABLES[8], selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case SENSOR_DEV:
+                database.beginTransaction();
+                count = database.delete(DATABASE_TABLES[9], selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case SENSOR_DATA:
+                database.beginTransaction();
+                count = database.delete(DATABASE_TABLES[10], selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case BATTERY:
+                database.beginTransaction();
+                count = database.delete(DATABASE_TABLES[11], selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case BATTERY_DISCHARGE:
+                database.beginTransaction();
+                count = database.delete(DATABASE_TABLES[12], selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case BATTERY_CHARGE:
+                database.beginTransaction();
+                count = database.delete(DATABASE_TABLES[13], selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+
+
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
@@ -393,6 +725,40 @@ public class Provider extends ContentProvider {
                 return Applications_Crashes.CONTENT_TYPE;
             case ERROR_ID:
                 return Applications_Crashes.CONTENT_ITEM_TYPE;
+            case DEVICE_INFO:
+                return Aware_Device.CONTENT_TYPE;
+            case DEVICE_INFO_ID:
+                return Aware_Device.CONTENT_ITEM_TYPE;
+            case SETTING:
+                return Aware_Settings.CONTENT_TYPE;
+            case SETTING_ID:
+                return Aware_Settings.CONTENT_ITEM_TYPE;
+            case PLUGIN:
+                return Aware_Plugins.CONTENT_TYPE;
+            case PLUGIN_ID:
+                return Aware_Plugins.CONTENT_ITEM_TYPE;
+            case SENSOR_DEV:
+                return Barometer_Sensor.CONTENT_TYPE;
+            case SENSOR_DEV_ID:
+                return Barometer_Sensor.CONTENT_ITEM_TYPE;
+            case SENSOR_DATA:
+                return Barometer_Data.CONTENT_TYPE;
+            case SENSOR_DATA_ID:
+                return Barometer_Data.CONTENT_ITEM_TYPE;
+            case BATTERY:
+                return Battery_Data.CONTENT_TYPE;
+            case BATTERY_ID:
+                return Battery_Data.CONTENT_ITEM_TYPE;
+            case BATTERY_DISCHARGE:
+                return Battery_Discharges.CONTENT_TYPE;
+            case BATTERY_DISCHARGE_ID:
+                return Battery_Discharges.CONTENT_ITEM_TYPE;
+            case BATTERY_CHARGE:
+                return Battery_Charges.CONTENT_TYPE;
+            case BATTERY_CHARGE_ID:
+                return Battery_Charges.CONTENT_ITEM_TYPE;
+
+
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
@@ -436,7 +802,7 @@ public class Provider extends ContentProvider {
                 throw new SQLException("Failed to insert row into " + uri);
             case FOREGROUND:
                 database.beginTransaction();
-                long foreground_id = database.insertWithOnConflict(DATABASE_TABLES[0],
+                long foreground_id = database.insertWithOnConflict(DATABASE_TABLES[2],
                         Applications_Foreground.APPLICATION_NAME, values, SQLiteDatabase.CONFLICT_IGNORE);
                 database.setTransactionSuccessful();
                 database.endTransaction();
@@ -450,7 +816,7 @@ public class Provider extends ContentProvider {
                 throw new SQLException("Failed to insert row into " + uri);
             case APPLICATIONS:
                 database.beginTransaction();
-                long applications_id = database.insertWithOnConflict(DATABASE_TABLES[1],
+                long applications_id = database.insertWithOnConflict(DATABASE_TABLES[3],
                         Applications_History.PACKAGE_NAME, values, SQLiteDatabase.CONFLICT_IGNORE);
                 database.setTransactionSuccessful();
                 database.endTransaction();
@@ -464,7 +830,7 @@ public class Provider extends ContentProvider {
                 throw new SQLException("Failed to insert row into " + uri);
             case NOTIFICATIONS:
                 database.beginTransaction();
-                long notifications_id = database.insertWithOnConflict(DATABASE_TABLES[2],
+                long notifications_id = database.insertWithOnConflict(DATABASE_TABLES[4],
                         Applications_Notifications.PACKAGE_NAME, values, SQLiteDatabase.CONFLICT_IGNORE);
                 database.setTransactionSuccessful();
                 database.endTransaction();
@@ -479,7 +845,7 @@ public class Provider extends ContentProvider {
                 throw new SQLException("Failed to insert row into " + uri);
             case ERROR:
                 database.beginTransaction();
-                long error_id = database.insertWithOnConflict(DATABASE_TABLES[3],
+                long error_id = database.insertWithOnConflict(DATABASE_TABLES[5],
                         Applications_Crashes.PACKAGE_NAME, values, SQLiteDatabase.CONFLICT_IGNORE);
                 database.setTransactionSuccessful();
                 database.endTransaction();
@@ -490,9 +856,110 @@ public class Provider extends ContentProvider {
                     return errorsUri;
                 }
                 throw new SQLException("Failed to insert row into " + uri);
-
-
-
+            case DEVICE_INFO:
+                database.beginTransaction();
+                long dev_id = database.insertWithOnConflict(DATABASE_TABLES[6],
+                        Aware_Device.DEVICE_ID, values, SQLiteDatabase.CONFLICT_IGNORE);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                if (dev_id > 0) {
+                    Uri devUri = ContentUris.withAppendedId(
+                            Aware_Device.CONTENT_URI, dev_id);
+                    getContext().getContentResolver().notifyChange(devUri, null);
+                    return devUri;
+                }
+                throw new SQLException("Failed to insert row into " + uri);
+            case SETTING:
+                database.beginTransaction();
+                long sett_id = database.insertWithOnConflict(DATABASE_TABLES[7],
+                        Aware_Settings.SETTING_KEY, values, SQLiteDatabase.CONFLICT_IGNORE);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                if (sett_id > 0) {
+                    Uri settUri = ContentUris.withAppendedId(
+                            Aware_Settings.CONTENT_URI, sett_id);
+                    getContext().getContentResolver().notifyChange(settUri, null);
+                    return settUri;
+                }
+                throw new SQLException("Failed to insert row into " + uri);
+            case PLUGIN:
+                database.beginTransaction();
+                long plug_id = database.insertWithOnConflict(DATABASE_TABLES[8],
+                        Aware_Plugins.PLUGIN_NAME, values, SQLiteDatabase.CONFLICT_IGNORE);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                if (plug_id > 0) {
+                    Uri settUri = ContentUris.withAppendedId(
+                            Aware_Plugins.CONTENT_URI, plug_id);
+                    getContext().getContentResolver().notifyChange(settUri, null);
+                    return settUri;
+                }
+                throw new SQLException("Failed to insert row into " + uri);
+            case SENSOR_DEV:
+                database.beginTransaction();
+                long barometer_id = database.insertWithOnConflict(DATABASE_TABLES[9],
+                        Barometer_Sensor.DEVICE_ID, values, SQLiteDatabase.CONFLICT_IGNORE);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                if (barometer_id > 0) {
+                    Uri accelUri = ContentUris.withAppendedId(
+                            Barometer_Sensor.CONTENT_URI, barometer_id);
+                    getContext().getContentResolver().notifyChange(accelUri, null);
+                    return accelUri;
+                }
+                throw new SQLException("Failed to insert row into " + uri);
+            case SENSOR_DATA:
+                database.beginTransaction();
+                long barometer_data_id = database.insertWithOnConflict(DATABASE_TABLES[10],
+                        Barometer_Data.DEVICE_ID, values, SQLiteDatabase.CONFLICT_IGNORE);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                if (barometer_data_id > 0) {
+                    Uri accelDataUri = ContentUris.withAppendedId(
+                            Barometer_Data.CONTENT_URI, barometer_data_id);
+                    getContext().getContentResolver().notifyChange(accelDataUri,
+                            null);
+                    return accelDataUri;
+                }
+                throw new SQLException("Failed to insert row into " + uri);
+            case BATTERY:
+                database.beginTransaction();
+                long battery_id = database.insertWithOnConflict(DATABASE_TABLES[11], Battery_Data.TECHNOLOGY, values, SQLiteDatabase.CONFLICT_IGNORE);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                if (battery_id > 0) {
+                    Uri batteryUri = ContentUris.withAppendedId(Battery_Data.CONTENT_URI, battery_id);
+                    getContext().getContentResolver().notifyChange(batteryUri, null);
+                    return batteryUri;
+                }
+                throw new SQLException("Failed to insert row into " + uri);
+            case BATTERY_DISCHARGE:
+                database.beginTransaction();
+                long battery_d_id = database.insertWithOnConflict(DATABASE_TABLES[12], Battery_Discharges.DEVICE_ID, values, SQLiteDatabase.CONFLICT_IGNORE);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                if (battery_d_id > 0) {
+                    Uri batteryUri = ContentUris.withAppendedId(
+                            Battery_Discharges.CONTENT_URI, battery_d_id);
+                    getContext().getContentResolver()
+                            .notifyChange(batteryUri, null);
+                    return batteryUri;
+                }
+                throw new SQLException("Failed to insert row into " + uri);
+            case BATTERY_CHARGE:
+                database.beginTransaction();
+                long battery_c_id = database.insertWithOnConflict(DATABASE_TABLES[13],
+                        Battery_Charges.DEVICE_ID, values, SQLiteDatabase.CONFLICT_IGNORE);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                if (battery_c_id > 0) {
+                    Uri batteryUri = ContentUris.withAppendedId(
+                            Battery_Charges.CONTENT_URI, battery_c_id);
+                    getContext().getContentResolver()
+                            .notifyChange(batteryUri, null);
+                    return batteryUri;
+                }
+                throw new SQLException("Failed to insert row into " + uri);
 
 
 
@@ -588,6 +1055,33 @@ public class Provider extends ContentProvider {
                 ERROR);
         sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[5]
                 + "/#", ERROR_ID);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[6], DEVICE_INFO);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[6] + "/#", DEVICE_INFO_ID);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[7], SETTING);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[7] + "/#", SETTING_ID);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[8], PLUGIN);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[8] + "/#", PLUGIN_ID);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[9],
+                SENSOR_DEV);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[9]
+                + "/#", SENSOR_DEV_ID);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[10],
+                SENSOR_DATA);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[10]
+                + "/#", SENSOR_DATA_ID);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[11],
+                BATTERY);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[11]
+                + "/#", BATTERY_ID);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[12],
+                BATTERY_DISCHARGE);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[12]
+                + "/#", BATTERY_DISCHARGE_ID);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[13],
+                BATTERY_CHARGE);
+        sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[13]
+                + "/#", BATTERY_CHARGE_ID);
+
 
         accelDeviceMap = new HashMap<String, String>();
         accelDeviceMap.put(Accelerometer_Sensor._ID, Accelerometer_Sensor._ID);
@@ -704,6 +1198,109 @@ public class Provider extends ContentProvider {
         crashesMap.put(Applications_Crashes.IS_SYSTEM_APP,
                 Applications_Crashes.IS_SYSTEM_APP);
 
+        deviceMap = new HashMap<String, String>();
+        deviceMap.put(Aware_Device._ID, Aware_Device._ID);
+        deviceMap.put(Aware_Device.TIMESTAMP, Aware_Device.TIMESTAMP);
+        deviceMap.put(Aware_Device.DEVICE_ID, Aware_Device.DEVICE_ID);
+        deviceMap.put(Aware_Device.BOARD, Aware_Device.BOARD);
+        deviceMap.put(Aware_Device.BRAND, Aware_Device.BRAND);
+        deviceMap.put(Aware_Device.DEVICE, Aware_Device.DEVICE);
+        deviceMap.put(Aware_Device.BUILD_ID, Aware_Device.BUILD_ID);
+        deviceMap.put(Aware_Device.HARDWARE, Aware_Device.HARDWARE);
+        deviceMap.put(Aware_Device.MANUFACTURER, Aware_Device.MANUFACTURER);
+        deviceMap.put(Aware_Device.MODEL, Aware_Device.MODEL);
+        deviceMap.put(Aware_Device.PRODUCT, Aware_Device.PRODUCT);
+        deviceMap.put(Aware_Device.SERIAL, Aware_Device.SERIAL);
+        deviceMap.put(Aware_Device.RELEASE, Aware_Device.RELEASE);
+        deviceMap.put(Aware_Device.RELEASE_TYPE, Aware_Device.RELEASE_TYPE);
+        deviceMap.put(Aware_Device.SDK, Aware_Device.SDK);
+        deviceMap.put(Aware_Device.LABEL, Aware_Device.LABEL);
+
+        settingsMap = new HashMap<String, String>();
+        settingsMap.put(Aware_Settings.SETTING_ID, Aware_Settings.SETTING_ID);
+        settingsMap.put(Aware_Settings.SETTING_KEY, Aware_Settings.SETTING_KEY);
+        settingsMap.put(Aware_Settings.SETTING_VALUE,Aware_Settings.SETTING_VALUE);
+        settingsMap.put(Aware_Settings.SETTING_PACKAGE_NAME, Aware_Settings.SETTING_PACKAGE_NAME);
+
+        pluginsMap = new HashMap<String, String>();
+        pluginsMap.put(Aware_Plugins.PLUGIN_ID, Aware_Plugins.PLUGIN_ID);
+        pluginsMap.put(Aware_Plugins.PLUGIN_PACKAGE_NAME,Aware_Plugins.PLUGIN_PACKAGE_NAME);
+        pluginsMap.put(Aware_Plugins.PLUGIN_NAME, Aware_Plugins.PLUGIN_NAME);
+        pluginsMap.put(Aware_Plugins.PLUGIN_VERSION,Aware_Plugins.PLUGIN_VERSION);
+        pluginsMap.put(Aware_Plugins.PLUGIN_STATUS, Aware_Plugins.PLUGIN_STATUS);
+        pluginsMap.put(Aware_Plugins.PLUGIN_AUTHOR, Aware_Plugins.PLUGIN_AUTHOR);
+        pluginsMap.put(Aware_Plugins.PLUGIN_ICON, Aware_Plugins.PLUGIN_ICON);
+        pluginsMap.put(Aware_Plugins.PLUGIN_DESCRIPTION, Aware_Plugins.PLUGIN_DESCRIPTION);
+
+        sensorMap = new HashMap<String, String>();
+        sensorMap.put(Barometer_Sensor._ID, Barometer_Sensor._ID);
+        sensorMap.put(Barometer_Sensor.TIMESTAMP, Barometer_Sensor.TIMESTAMP);
+        sensorMap.put(Barometer_Sensor.DEVICE_ID, Barometer_Sensor.DEVICE_ID);
+        sensorMap.put(Barometer_Sensor.MAXIMUM_RANGE,
+                Barometer_Sensor.MAXIMUM_RANGE);
+        sensorMap.put(Barometer_Sensor.MINIMUM_DELAY,
+                Barometer_Sensor.MINIMUM_DELAY);
+        sensorMap.put(Barometer_Sensor.NAME, Barometer_Sensor.NAME);
+        sensorMap.put(Barometer_Sensor.POWER_MA, Barometer_Sensor.POWER_MA);
+        sensorMap.put(Barometer_Sensor.RESOLUTION, Barometer_Sensor.RESOLUTION);
+        sensorMap.put(Barometer_Sensor.TYPE, Barometer_Sensor.TYPE);
+        sensorMap.put(Barometer_Sensor.VENDOR, Barometer_Sensor.VENDOR);
+        sensorMap.put(Barometer_Sensor.VERSION, Barometer_Sensor.VERSION);
+
+        sensorDataMap = new HashMap<String, String>();
+        sensorDataMap.put(Barometer_Data._ID, Barometer_Data._ID);
+        sensorDataMap.put(Barometer_Data.TIMESTAMP, Barometer_Data.TIMESTAMP);
+        sensorDataMap.put(Barometer_Data.DEVICE_ID, Barometer_Data.DEVICE_ID);
+        sensorDataMap.put(Barometer_Data.AMBIENT_PRESSURE,
+                Barometer_Data.AMBIENT_PRESSURE);
+        sensorDataMap.put(Barometer_Data.ACCURACY, Barometer_Data.ACCURACY);
+        sensorDataMap.put(Barometer_Data.LABEL, Barometer_Data.LABEL);
+
+        batteryProjectionMap = new HashMap<String, String>();
+        batteryProjectionMap.put(Battery_Data._ID, Battery_Data._ID);
+        batteryProjectionMap
+                .put(Battery_Data.TIMESTAMP, Battery_Data.TIMESTAMP);
+        batteryProjectionMap
+                .put(Battery_Data.DEVICE_ID, Battery_Data.DEVICE_ID);
+        batteryProjectionMap.put(Battery_Data.STATUS, Battery_Data.STATUS);
+        batteryProjectionMap.put(Battery_Data.LEVEL, Battery_Data.LEVEL);
+        batteryProjectionMap.put(Battery_Data.SCALE, Battery_Data.SCALE);
+        batteryProjectionMap.put(Battery_Data.VOLTAGE, Battery_Data.VOLTAGE);
+        batteryProjectionMap.put(Battery_Data.TEMPERATURE,
+                Battery_Data.TEMPERATURE);
+        batteryProjectionMap.put(Battery_Data.PLUG_ADAPTOR,
+                Battery_Data.PLUG_ADAPTOR);
+        batteryProjectionMap.put(Battery_Data.HEALTH, Battery_Data.HEALTH);
+        batteryProjectionMap.put(Battery_Data.TECHNOLOGY,
+                Battery_Data.TECHNOLOGY);
+
+        batteryDischargesMap = new HashMap<String, String>();
+        batteryDischargesMap
+                .put(Battery_Discharges._ID, Battery_Discharges._ID);
+        batteryDischargesMap.put(Battery_Discharges.TIMESTAMP,
+                Battery_Discharges.TIMESTAMP);
+        batteryDischargesMap.put(Battery_Discharges.DEVICE_ID,
+                Battery_Discharges.DEVICE_ID);
+        batteryDischargesMap.put(Battery_Discharges.BATTERY_START,
+                Battery_Discharges.BATTERY_START);
+        batteryDischargesMap.put(Battery_Discharges.BATTERY_END,
+                Battery_Discharges.BATTERY_END);
+        batteryDischargesMap.put(Battery_Discharges.END_TIMESTAMP,
+                Battery_Discharges.END_TIMESTAMP);
+
+        batteryChargesMap = new HashMap<String, String>();
+        batteryChargesMap.put(Battery_Charges._ID, Battery_Charges._ID);
+        batteryChargesMap.put(Battery_Charges.TIMESTAMP,
+                Battery_Charges.TIMESTAMP);
+        batteryChargesMap.put(Battery_Charges.DEVICE_ID,
+                Battery_Charges.DEVICE_ID);
+        batteryChargesMap.put(Battery_Charges.BATTERY_START,
+                Battery_Charges.BATTERY_START);
+        batteryChargesMap.put(Battery_Charges.BATTERY_END,
+                Battery_Charges.BATTERY_END);
+        batteryChargesMap.put(Battery_Charges.END_TIMESTAMP,
+                Battery_Charges.END_TIMESTAMP);
+
         return true;
     }
 
@@ -745,6 +1342,41 @@ public class Provider extends ContentProvider {
                 qb.setTables(DATABASE_TABLES[5]);
                 qb.setProjectionMap(crashesMap);
                 break;
+            case DEVICE_INFO:
+                qb.setTables(DATABASE_TABLES[6]);
+                qb.setProjectionMap(deviceMap);
+                break;
+            case SETTING:
+                qb.setTables(DATABASE_TABLES[7]);
+                qb.setProjectionMap(settingsMap);
+                break;
+            case PLUGIN:
+                qb.setTables(DATABASE_TABLES[8]);
+                qb.setProjectionMap(pluginsMap);
+                break;
+            case SENSOR_DEV:
+                qb.setTables(DATABASE_TABLES[9]);
+                qb.setProjectionMap(sensorMap);
+                break;
+            case SENSOR_DATA:
+                qb.setTables(DATABASE_TABLES[10]);
+                qb.setProjectionMap(sensorDataMap);
+                break;
+            case BATTERY:
+                qb.setTables(DATABASE_TABLES[11]);
+                qb.setProjectionMap(batteryProjectionMap);
+                break;
+            case BATTERY_DISCHARGE:
+                qb.setTables(DATABASE_TABLES[12]);
+                qb.setProjectionMap(batteryDischargesMap);
+                break;
+            case BATTERY_CHARGE:
+                qb.setTables(DATABASE_TABLES[13]);
+                qb.setProjectionMap(batteryChargesMap);
+                break;
+
+
+
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
@@ -813,6 +1445,62 @@ public class Provider extends ContentProvider {
             case ERROR:
                 database.beginTransaction();
                 count = database.update(DATABASE_TABLES[5], values, selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case DEVICE_INFO:
+                database.beginTransaction();
+                count = database.update(DATABASE_TABLES[6], values, selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case SETTING:
+                database.beginTransaction();
+                count = database.update(DATABASE_TABLES[7], values, selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case PLUGIN:
+                database.beginTransaction();
+                count = database.update(DATABASE_TABLES[8], values, selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case SENSOR_DEV:
+                database.beginTransaction();
+                count = database.update(DATABASE_TABLES[9], values, selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case SENSOR_DATA:
+                database.beginTransaction();
+                count = database.update(DATABASE_TABLES[10], values, selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case BATTERY:
+                database.beginTransaction();
+                count = database.update(DATABASE_TABLES[11], values, selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case BATTERY_DISCHARGE:
+                database.beginTransaction();
+                count = database.update(DATABASE_TABLES[12], values, selection,
+                        selectionArgs);
+                database.setTransactionSuccessful();
+                database.endTransaction();
+                break;
+            case BATTERY_CHARGE:
+                database.beginTransaction();
+                count = database.update(DATABASE_TABLES[13], values, selection,
                         selectionArgs);
                 database.setTransactionSuccessful();
                 database.endTransaction();
