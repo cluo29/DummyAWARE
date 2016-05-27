@@ -1030,6 +1030,8 @@ public class Provider extends ContentProvider {
     public boolean onCreate() {
         //AUTHORITY = getContext().getPackageName() + ".provider.accelerometer";
 
+        Log.d("DUMMAYAWARE","1033");
+
         sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         sUriMatcher.addURI(AUTHORITY,
                 DATABASE_TABLES[0], ACCEL_DEV);

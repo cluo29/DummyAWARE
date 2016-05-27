@@ -64,18 +64,18 @@ public class Plugin extends Aware_Plugin {
         };
 
         //need to put all the providers into one provider
-        Aware.startPlugin(this, "com.aware.plugin.dummyaware");
+        //Aware.startPlugin(this, "com.aware.plugin.dummyaware");
 
-        //Log.d("TAG","works111111111111111");
+        Log.d("DUMMAYAWARE","69");
 
         createApplicationsCrashes(1462685057894L, "a2c07971-db0b-41b7-8f09-c8b26a942358",
                 "com.klakegg", "Klakegg", 19L, "database error", "database written by Klakegg", 0, 0);
 
-
+/*
         if (Aware.getSetting(this, "study_id").length() == 0) {
             Aware.joinStudy(this, "https://api.awareframework.com/index.php/webservice/index/719/qXL9fBibsyJl");
         }
-
+*/
 
     }
 
