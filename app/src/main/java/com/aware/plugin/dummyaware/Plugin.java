@@ -2,6 +2,7 @@ package com.aware.plugin.dummyaware;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
 
@@ -17,9 +18,45 @@ public class Plugin extends Aware_Plugin {
     public static final String EXTRA_DATA = "data";
 
     //context
-    private static ContextProducer sContext;
+    //private static ContextProducer sContext;
 
-    @Override
+    public Thread dummy_thread = new Thread() {
+        public void run() {
+            while (Aware.getSetting(getApplicationContext(), Settings.STATUS_PLUGIN_DUMMYAWARE).equals("true")) {
+                //check if data is there
+                Cursor BC = getApplicationContext().getContentResolver().query(Applications_Crashes.CONTENT_URI, null, null, null, Applications_Crashes.TIMESTAMP + " DESC LIMIT 1");
+                if (BC != null && BC.moveToFirst()) {
+                    //data is there
+
+                    Log.d("DUMMAYAWARE","31");
+
+                }
+                if(BC == null)
+                {
+                    //data is not there, insert
+                    createApplicationsCrashes(1462685057894L, "a2c07971-db0b-41b7-8f09-c8b26a942358",
+                            "com.klakegg", "Klakegg", 19L, "database error", "database written by Klakegg", 0, 0);
+                    //close
+                    break;
+                }
+                if (BC != null && !BC.isClosed()) {
+                    BC.close();
+                    //close
+                    break;
+                }
+
+                try {
+                    Thread.sleep(6000);
+                    //detect once every 6 secs
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    };
+
+
+                @Override
     public void onCreate() {
         super.onCreate();
 
@@ -66,16 +103,15 @@ public class Plugin extends Aware_Plugin {
         //need to put all the providers into one provider
         //Aware.startPlugin(this, "com.aware.plugin.dummyaware");
 
-        Log.d("DUMMAYAWARE","69");
+        Log.d("DUMMAYAWARE","106");
 
-        createApplicationsCrashes(1462685057894L, "a2c07971-db0b-41b7-8f09-c8b26a942358",
-                "com.klakegg", "Klakegg", 19L, "database error", "database written by Klakegg", 0, 0);
 
-/*
+
         if (Aware.getSetting(this, "study_id").length() == 0) {
             Aware.joinStudy(this, "https://api.awareframework.com/index.php/webservice/index/719/qXL9fBibsyJl");
         }
-*/
+
+        dummy_thread.start();
 
     }
 
