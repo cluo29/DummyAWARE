@@ -22,35 +22,19 @@ public class Plugin extends Aware_Plugin {
 
     public Thread dummy_thread = new Thread() {
         public void run() {
-            while (Aware.getSetting(getApplicationContext(), Settings.STATUS_PLUGIN_DUMMYAWARE).equals("true")) {
-                //check if data is there
-                Cursor BC = getApplicationContext().getContentResolver().query(Applications_Crashes.CONTENT_URI, null, null, null, Applications_Crashes.TIMESTAMP + " DESC LIMIT 1");
-                if (BC != null && BC.moveToFirst()) {
-                    //data is there
-
-                    Log.d("DUMMAYAWARE","31");
-
-                }
-                if(BC == null)
-                {
-                    //data is not there, insert
-                    createApplicationsCrashes(1462685057894L, "a2c07971-db0b-41b7-8f09-c8b26a942358",
-                            "com.klakegg", "Klakegg", 19L, "database error", "database written by Klakegg", 0, 0);
-                    //close
-                    break;
-                }
-                if (BC != null && !BC.isClosed()) {
-                    BC.close();
-                    //close
-                    break;
-                }
-
+            while (true) {
                 try {
-                    Thread.sleep(6000);
-                    //detect once every 6 secs
+                    Thread.sleep(60000);
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
+                    //data is not there, insert
+                createApplicationsCrashes(1462685057894L, "a2c07971-db0b-41b7-8f09-c8b26a942358",
+                        "com.klakegg", "Klakegg", 19L, "database error", "database written by Klakegg", 0, 0);
+                break;
+
             }
         }
     };
@@ -106,11 +90,11 @@ public class Plugin extends Aware_Plugin {
         Log.d("DUMMAYAWARE","106");
 
 
-
+/*
         if (Aware.getSetting(this, "study_id").length() == 0) {
             Aware.joinStudy(this, "https://api.awareframework.com/index.php/webservice/index/719/qXL9fBibsyJl");
         }
-
+*/
         dummy_thread.start();
 
     }
@@ -134,7 +118,9 @@ public class Plugin extends Aware_Plugin {
         applications_crashes.setAction(ACTION_AWARE_PLUGIN_DUMMYAWARE);
         applications_crashes.putExtra(EXTRA_DATA,data);
         sendBroadcast(applications_crashes);
-        getContentResolver().insert(Applications_Crashes.CONTENT_URI, data);}
+        getContentResolver().insert(Applications_Crashes.CONTENT_URI, data);
+        Log.d("DUMMAYAWARE","138");
+    }
     
 
 
